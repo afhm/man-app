@@ -1,8 +1,8 @@
-## Manpower Management System
+# Manpower Management System
 
 Nodejs + Typescript + Postgres + Redis
 
-### Application Setup (Development)
+## Application Setup (Development)
 
 1. Install Postgres, redis, nodejs.
 2. Create database `man_dev` and `man_test`
