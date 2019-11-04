@@ -11,7 +11,7 @@
     "db:delete:test": "cross-env NODE_ENV=test node scripts/db/delete",
     "db:flush:dev": "cross-env NODE_ENV=development npm run db:delete:dev && npm run db:create:dev",
     "db:flush:test": "cross-env NODE_ENV=test npm run db:delete:test && npm run db:create:test",
-    "migrate:dev": "npm run build && cross-env NODE_ENV=development sequelize db:migrate",
+    "migrate:dev": "cross-env NODE_ENV=development npm run migrate latest ",
     "migrate:test": "npm run build && cross-env NODE_ENV=test dotenv -e .env sequelize db:migrate --env test",
     "migrate:prod": "sequelize db:migrate --env production",
     "migrate": "NODE_PATH=./src node migrate.js",

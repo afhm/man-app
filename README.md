@@ -1,9 +1,14 @@
-# typescript-node
+## Manpower Management System
 
-Working on...
+Nodejs + Typescript
 
+### Application Setup (Development)
+
+1. Install Postgres, redis, nodejs.
+2. Create database `man_dev`
+
+```
 npm install
-tsd install
-
-gulp build
-gulp test
+npm run migrate:dev
+npm run start:dev
+```
