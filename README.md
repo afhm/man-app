@@ -14,8 +14,8 @@ $ psql
 psql (12.0.0)
 Type "help" for help.
 
-$ CREATE DATABASE man_dev;
-$ CREATE DATABASE man_test;
+CREATE DATABASE man_dev;
+CREATE DATABASE man_test;
 ```
 
 ```
