@@ -7,7 +7,7 @@ Nodejs + Typescript + Postgres + Redis
 1. Install Postgres, redis, nodejs.
 2. Create database `man_dev` and `man_test`
 
-```
+```postgres
 $ psql
 psql (12.0.0)
 Type "help" for help.
