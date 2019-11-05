@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "gc": "git-cz",
     "build": "rimraf ./dist && tsc && npm run lint",
     "db:create:dev": "cross-env NODE_ENV=development node scripts/db/create",
     "db:create:test": "cross-env NODE_ENV=test node scripts/db/create",
@@ -21,6 +22,10 @@
     "test:dev": "jest --watchAll",
     "testWithCoverage": "jest --coverage"
   },
+  "lint-staged": {
+    "*.js": "lint"
+  },
+  "pre-commit": "lint:staged",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afhm/man-app.git"
@@ -104,8 +109,8 @@
     "travis-deploy-once": "^5.0.11"
   },
   "engines": {
-    "node": ">=10",
-    "npm": ">=6"
+    "node": ">=10.16.3",
+    "npm": ">=6.9.0"
   },
   "config": {
     "commitizen": {
