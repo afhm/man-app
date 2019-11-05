@@ -20,7 +20,7 @@ app.use(cors(origin));
 app.use(compression());
 app.use(helmet());
 app.use(morgan("combined"));
-require("shared/infra/database/pg").initConnection();
+require("../../../shared/infra/database/pg").initConnection();
 app.use("/api/v1", v1Router);
 
 const port = process.env.PORT || 5000;
@@ -28,3 +28,4 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`[App]: Listening on port ${port}`);
 });
+export default app;

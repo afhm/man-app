@@ -4,7 +4,7 @@ import { UserEmail } from "../../domain/userEmail";
 import { UserName } from "../../domain/userName";
 import { UserMap } from "../../mappers/userMap";
 import { IUserRepo } from "../userRepo";
-const { table } = require("shared/infra/database/orm");
+const { table } = require("../../../../shared/infra/database/orm");
 
 export class KnexUserRepo implements IUserRepo {
   async exists(userEmail: UserEmail): Promise<boolean> {
