@@ -1,8 +1,6 @@
-import { getUserByUserName } from '../getUserByUserName';
-import { GetCurrentUserController } from './GetCurrentUserController';
+import { getUserByUserName } from "../getUserByUserName";
+import { GetCurrentUserController } from "./GetCurrentUserController";
 
-const getCurrentUserController = new GetCurrentUserController(
-  getUserByUserName
-);
+const getCurrentUserController = new GetCurrentUserController(getUserByUserName);
 
 export { getCurrentUserController };

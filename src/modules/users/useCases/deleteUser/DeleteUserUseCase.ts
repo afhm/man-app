@@ -1,17 +1,13 @@
-import { AppError } from '../../../../shared/core/AppError';
-import { Either, left, Result, right } from '../../../../shared/core/Result';
-import { UseCase } from '../../../../shared/core/UseCase';
-import { IUserRepo } from '../../repos/userRepo';
-import { DeleteUserDTO } from './DeleteUserDTO';
-import { DeleteUserErrors } from './DeleteUserErrors';
+import { AppError } from "../../../../shared/core/AppError";
+import { Either, left, Result, right } from "../../../../shared/core/Result";
+import { UseCase } from "../../../../shared/core/UseCase";
+import { IUserRepo } from "../../repos/userRepo";
+import { DeleteUserDTO } from "./DeleteUserDTO";
+import { DeleteUserErrors } from "./DeleteUserErrors";
 
-type Response = Either<
-  AppError.UnexpectedError | DeleteUserErrors.UserNotFoundError,
-  Result<void>
->;
+type Response = Either<AppError.UnexpectedError | DeleteUserErrors.UserNotFoundError, Result<void>>;
 
-export class DeleteUserUseCase
-  implements UseCase<DeleteUserDTO, Promise<Response>> {
+export class DeleteUserUseCase implements UseCase<DeleteUserDTO, Promise<Response>> {
   private userRepo: IUserRepo;
 
   constructor(userRepo: IUserRepo) {

@@ -1,5 +1,5 @@
-import { UseCaseError } from '../domain/UseCaseError';
-import { Result } from './Result';
+import { UseCaseError } from "../domain/UseCaseError";
+import { Result } from "./Result";
 
 export namespace AppError {
   export class UnexpectedError extends Result<UseCaseError> {
@@ -8,10 +8,10 @@ export namespace AppError {
     }
     public constructor(err: any) {
       super(false, {
-        message: `An unexpected error occurred.`,
-        error: err
+        message: "An unexpected error occurred.",
+        error: err,
       } as UseCaseError);
-      console.log(`[AppError]: An unexpected error occurred`);
+      console.log("[AppError]: An unexpected error occurred");
       console.error(err);
     }
   }

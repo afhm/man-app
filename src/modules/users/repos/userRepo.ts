@@ -1,6 +1,6 @@
-import { User } from '../domain/user';
-import { UserEmail } from '../domain/userEmail';
-import { UserName } from '../domain/userName';
+import { User } from "../domain/user";
+import { UserEmail } from "../domain/userEmail";
+import { UserName } from "../domain/userName";
 
 export interface IUserRepo {
   exists(userEmail: UserEmail): Promise<boolean>;

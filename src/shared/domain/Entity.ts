@@ -1,5 +1,4 @@
-import { UniqueEntityID } from './UniqueEntityID';
-// tslint:disable-next-line: no-use-before-declare
+import { UniqueEntityID } from "./UniqueEntityID";
 const isEntity = (v: any): v is Entity<any> => v instanceof Entity;
 
 export abstract class Entity<T> {

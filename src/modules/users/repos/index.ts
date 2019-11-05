@@ -1,4 +1,4 @@
-import { KnexUserRepo } from './implementations/knexUserRepo';
+import { KnexUserRepo } from "./implementations/knexUserRepo";
 
 const userRepo = new KnexUserRepo();
 

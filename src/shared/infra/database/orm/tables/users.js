@@ -1,15 +1,15 @@
 function loadTables(orm) {
   orm.defineTable({
-    name: 'users',
+    name: "users",
     props: {
-      key: 'base_user_id',
-      timestamps: true
+      key: "base_user_id",
+      timestamps: true,
     },
     scopes: {
       whereNotDeleted() {
-        return this.where('is_deleted', false);
-      }
-    }
+        return this.where("is_deleted", false);
+      },
+    },
   });
 }
 

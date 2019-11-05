@@ -1,7 +1,7 @@
-import { BaseController } from '../../../../shared/infra/http/models/BaseController';
-import { CreateUserDTO } from './CreateUserDTO';
-import { CreateUserErrors } from './CreateUserErrors';
-import { CreateUserUseCase } from './CreateUserUseCase';
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
+import { CreateUserDTO } from "./CreateUserDTO";
+import { CreateUserErrors } from "./CreateUserErrors";
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 export class CreateUserController extends BaseController {
   private useCase: CreateUserUseCase;

@@ -1,7 +1,7 @@
-import { BaseController } from '../../../../shared/infra/http/models/BaseController';
-import { DeleteUserDTO } from './DeleteUserDTO';
-import { DeleteUserErrors } from './DeleteUserErrors';
-import { DeleteUserUseCase } from './DeleteUserUseCase';
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
+import { DeleteUserDTO } from "./DeleteUserDTO";
+import { DeleteUserErrors } from "./DeleteUserErrors";
+import { DeleteUserUseCase } from "./DeleteUserUseCase";
 
 export class DeleteUserController extends BaseController {
   private useCase: DeleteUserUseCase;

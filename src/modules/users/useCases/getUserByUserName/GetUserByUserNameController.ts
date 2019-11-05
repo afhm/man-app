@@ -1,7 +1,7 @@
-import { BaseController } from '../../../../shared/infra/http/models/BaseController';
-import { GetUserByUserName } from './GetUserByUserName';
-import { GetUserByUserNameDTO } from './GetUserByUserNameDTO';
-import { GetUserByUserNameErrors } from './GetUserByUserNameErrors';
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
+import { GetUserByUserName } from "./GetUserByUserName";
+import { GetUserByUserNameDTO } from "./GetUserByUserNameDTO";
+import { GetUserByUserNameErrors } from "./GetUserByUserNameErrors";
 
 export class GetUserByUserNameController extends BaseController {
   private useCase: GetUserByUserName;

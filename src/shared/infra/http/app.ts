@@ -1,15 +1,15 @@
-import bodyParser from 'body-parser';
-import compression from 'compression';
-import cors from 'cors';
-import express from 'express';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import { isProduction } from '../../../config';
-import { v1Router } from './api/v1';
+import bodyParser from "body-parser";
+import compression from "compression";
+import cors from "cors";
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+// import { isProduction } from "../../../config";
+import { v1Router } from "./api/v1";
 
 const origin = {
   // origin: isProduction ? 'https://dddforum.com' : '*',
-  origin: '*'
+  origin: "*",
 };
 
 const app = express();
@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(origin));
 app.use(compression());
 app.use(helmet());
-app.use(morgan('combined'));
-require('shared/infra/database/pg').initConnection();
-app.use('/api/v1', v1Router);
+app.use(morgan("combined"));
+require("shared/infra/database/pg").initConnection();
+app.use("/api/v1", v1Router);
 
 const port = process.env.PORT || 5000;
 

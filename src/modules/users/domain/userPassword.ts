@@ -1,7 +1,7 @@
-import * as bcrypt from 'bcrypt-nodejs';
-import { Guard } from '../../../shared/core/Guard';
-import { Result } from '../../../shared/core/Result';
-import { ValueObject } from '../../../shared/domain/ValueObject';
+import * as bcrypt from "bcrypt-nodejs";
+import { Guard } from "../../../shared/core/Guard";
+import { Result } from "../../../shared/core/Result";
+import { ValueObject } from "../../../shared/domain/ValueObject";
 
 export interface IUserPasswordProps {
   value: string;
@@ -16,24 +16,22 @@ export class UserPassword extends ValueObject<IUserPasswordProps> {
   public static minLength = 6;
 
   public static create(props: IUserPasswordProps): Result<UserPassword> {
-    const propsResult = Guard.againstNullOrUndefined(props.value, 'password');
+    const propsResult = Guard.againstNullOrUndefined(props.value, "password");
 
     if (!propsResult.succeeded) {
       return Result.fail<UserPassword>(propsResult.message);
     } else {
       if (!props.hashed) {
         if (!UserPassword.isAppropriateLength(props.value)) {
-          return Result.fail<UserPassword>(
-            'Password doesnt meet criteria [8 chars min].'
-          );
+          return Result.fail<UserPassword>("Password doesnt meet criteria [8 chars min].");
         }
       }
 
       return Result.ok<UserPassword>(
         new UserPassword({
           value: props.value,
-          hashed: !!props.hashed === true
-        })
+          hashed: !!props.hashed === true,
+        }),
       );
     }
   }
@@ -76,11 +74,8 @@ export class UserPassword extends ValueObject<IUserPasswordProps> {
     super(props);
   }
 
-  private async bcryptCompare(
-    plainText: string,
-    hashed: string
-  ): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+  private async bcryptCompare(plainText: string, hashed: string): Promise<boolean> {
+    return new Promise(resolve => {
       bcrypt.compare(plainText, hashed, (err, compareResult) => {
         if (err) {
           return resolve(false);

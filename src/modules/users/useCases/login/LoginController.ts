@@ -1,4 +1,3 @@
-
 import { LoginUserUseCase } from "./LoginUseCase";
 import { LoginDTO, LoginDTOResponse } from "./LoginDTO";
 import { LoginUseCaseErrors } from "./LoginErrors";
@@ -7,12 +6,12 @@ import { BaseController } from "../../../../shared/infra/http/models/BaseControl
 export class LoginController extends BaseController {
   private useCase: LoginUserUseCase;
 
-  constructor (useCase: LoginUserUseCase) {
+  constructor(useCase: LoginUserUseCase) {
     super();
     this.useCase = useCase;
   }
 
-  async executeImpl (): Promise<any> {
+  async executeImpl(): Promise<any> {
     const dto: LoginDTO = this.req.body as LoginDTO;
 
     try {
@@ -20,12 +19,12 @@ export class LoginController extends BaseController {
 
       if (result.isLeft()) {
         const error = result.value;
-  
+
         switch (error.constructor) {
           case LoginUseCaseErrors.UserNameDoesntExistError:
-            return this.notFound(error.errorValue().message)
+            return this.notFound(error.errorValue().message);
           case LoginUseCaseErrors.PasswordDoesntMatchError:
-            return this.clientError(error.errorValue().message)
+            return this.clientError(error.errorValue().message);
           default:
             return this.fail(error.errorValue().message);
         }
@@ -33,9 +32,8 @@ export class LoginController extends BaseController {
         const dto: LoginDTOResponse = result.value.getValue() as LoginDTOResponse;
         return this.ok<LoginDTOResponse>(this.res, dto);
       }
-
     } catch (err) {
-      return this.fail(err)
+      return this.fail(err);
     }
   }
 }

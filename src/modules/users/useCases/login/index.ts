@@ -1,7 +1,7 @@
-import { userRepo } from '../../repos';
-import { authService } from '../../services';
-import { LoginController } from './LoginController';
-import { LoginUserUseCase } from './LoginUseCase';
+import { userRepo } from "../../repos";
+import { authService } from "../../services";
+import { LoginController } from "./LoginController";
+import { LoginUserUseCase } from "./LoginUseCase";
 
 async function test() {
   await authService;

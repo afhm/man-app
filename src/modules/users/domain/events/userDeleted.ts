@@ -1,6 +1,6 @@
-import { IDomainEvent } from '../../../../shared/domain/events/IDomainEvent';
-import { UniqueEntityID } from '../../../../shared/domain/UniqueEntityID';
-import { User } from '../user';
+import { IDomainEvent } from "../../../../shared/domain/events/IDomainEvent";
+import { UniqueEntityID } from "../../../../shared/domain/UniqueEntityID";
+import { User } from "../user";
 
 export class UserDeleted implements IDomainEvent {
   public dateTimeOccurred: Date;

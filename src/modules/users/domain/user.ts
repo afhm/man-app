@@ -1,15 +1,15 @@
-import { Guard } from '../../../shared/core/Guard';
-import { Result } from '../../../shared/core/Result';
-import { AggregateRoot } from '../../../shared/domain/AggregateRoot';
-import { UniqueEntityID } from '../../../shared/domain/UniqueEntityID';
-import { UserCreated } from './events/userCreated';
-import { UserDeleted } from './events/userDeleted';
-import { UserLoggedIn } from './events/userLoggedIn';
-import { JWTToken, RefreshToken } from './jwt';
-import { UserEmail } from './userEmail';
-import { UserId } from './userId';
-import { UserName } from './userName';
-import { UserPassword } from './userPassword';
+import { Guard } from "../../../shared/core/Guard";
+import { Result } from "../../../shared/core/Result";
+import { AggregateRoot } from "../../../shared/domain/AggregateRoot";
+import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
+import { UserCreated } from "./events/userCreated";
+import { UserDeleted } from "./events/userDeleted";
+import { UserLoggedIn } from "./events/userLoggedIn";
+import { JWTToken, RefreshToken } from "./jwt";
+import { UserEmail } from "./userEmail";
+import { UserId } from "./userId";
+import { UserName } from "./userName";
+import { UserPassword } from "./userPassword";
 
 interface UserProps {
   email: UserEmail;
@@ -66,8 +66,8 @@ export class User extends AggregateRoot<UserProps> {
 
   public static create(props: UserProps, id?: UniqueEntityID): Result<User> {
     const guardResult = Guard.againstNullOrUndefinedBulk([
-      { argument: props.username, argumentName: 'username' },
-      { argument: props.email, argumentName: 'email' }
+      { argument: props.username, argumentName: "username" },
+      { argument: props.email, argumentName: "email" },
     ]);
 
     if (!guardResult.succeeded) {
@@ -80,9 +80,9 @@ export class User extends AggregateRoot<UserProps> {
         ...props,
         isDeleted: props.isDeleted ? props.isDeleted : false,
         isEmailVerified: props.isEmailVerified ? props.isEmailVerified : false,
-        isAdminUser: props.isAdminUser ? props.isAdminUser : false
+        isAdminUser: props.isAdminUser ? props.isAdminUser : false,
       },
-      id
+      id,
     );
 
     if (isNewUser) {

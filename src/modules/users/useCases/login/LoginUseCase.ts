@@ -1,19 +1,17 @@
-import { AppError } from '../../../../shared/core/AppError';
-import { Either, left, Result, right } from '../../../../shared/core/Result';
-import { UseCase } from '../../../../shared/core/UseCase';
-import { JWTToken, RefreshToken } from '../../domain/jwt';
-import { User } from '../../domain/user';
-import { UserName } from '../../domain/userName';
-import { UserPassword } from '../../domain/userPassword';
-import { IUserRepo } from '../../repos/userRepo';
-import { IAuthService } from '../../services/authService';
-import { LoginDTO, LoginDTOResponse } from './LoginDTO';
-import { LoginUseCaseErrors } from './LoginErrors';
+import { AppError } from "../../../../shared/core/AppError";
+import { Either, left, Result, right } from "../../../../shared/core/Result";
+import { UseCase } from "../../../../shared/core/UseCase";
+import { JWTToken, RefreshToken } from "../../domain/jwt";
+import { User } from "../../domain/user";
+import { UserName } from "../../domain/userName";
+import { UserPassword } from "../../domain/userPassword";
+import { IUserRepo } from "../../repos/userRepo";
+import { IAuthService } from "../../services/authService";
+import { LoginDTO, LoginDTOResponse } from "./LoginDTO";
+import { LoginUseCaseErrors } from "./LoginErrors";
 
 type Response = Either<
-  | LoginUseCaseErrors.PasswordDoesntMatchError
-  | LoginUseCaseErrors.UserNameDoesntExistError
-  | AppError.UnexpectedError,
+  LoginUseCaseErrors.PasswordDoesntMatchError | LoginUseCaseErrors.UserNameDoesntExistError | AppError.UnexpectedError,
   Result<LoginDTOResponse>
 >;
 
@@ -61,7 +59,7 @@ export class LoginUserUseCase implements UseCase<LoginDTO, Promise<Response>> {
         email: user.email.value,
         isEmailVerified: user.isEmailVerified,
         userId: user.userId.toString(),
-        adminUser: user.isAdminUser
+        adminUser: user.isAdminUser,
       });
 
       const refreshToken: RefreshToken = this.authService.createRefreshToken();
@@ -73,8 +71,8 @@ export class LoginUserUseCase implements UseCase<LoginDTO, Promise<Response>> {
       return right(
         Result.ok<LoginDTOResponse>({
           accessToken,
-          refreshToken
-        })
+          refreshToken,
+        }),
       );
     } catch (err) {
       return left(new AppError.UnexpectedError(err.toString()));

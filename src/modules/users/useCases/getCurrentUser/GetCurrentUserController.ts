@@ -1,7 +1,7 @@
-import { BaseController } from '../../../../shared/infra/http/models/BaseController';
-import { DecodedExpressRequest } from '../../infra/http/models/decodedRequest';
-import { UserMap } from '../../mappers/userMap';
-import { GetUserByUserName } from '../getUserByUserName/GetUserByUserName';
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
+import { DecodedExpressRequest } from "../../infra/http/models/decodedRequest";
+import { UserMap } from "../../mappers/userMap";
+import { GetUserByUserName } from "../getUserByUserName/GetUserByUserName";
 
 export class GetCurrentUserController extends BaseController {
   private useCase: GetUserByUserName;
@@ -24,7 +24,7 @@ export class GetCurrentUserController extends BaseController {
         const user = result.value.getValue();
 
         return this.ok(this.res, {
-          user: UserMap.toDTO(user)
+          user: UserMap.toDTO(user),
         });
       }
     } catch (err) {

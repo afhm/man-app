@@ -1,12 +1,12 @@
-import * as jwt from 'jsonwebtoken';
-import randtoken from 'rand-token';
-import { RedisClient } from 'redis';
-import * as uuid from 'uuid';
-import { authConfig } from '../../../../config';
-import { JWTClaims, JWTToken, RefreshToken } from '../../domain/jwt';
-import { User } from '../../domain/user';
-import { IAuthService } from '../authService';
-import { AbstractRedisClient } from './abstractRedisClient';
+import * as jwt from "jsonwebtoken";
+import randtoken from "rand-token";
+import { RedisClient } from "redis";
+// import * as uuid from "uuid";
+import { authConfig } from "../../../../config";
+import { JWTClaims, JWTToken, RefreshToken } from "../../domain/jwt";
+import { User } from "../../domain/user";
+import { IAuthService } from "../authService";
+import { AbstractRedisClient } from "./abstractRedisClient";
 
 /**
  * @class JWTClient
@@ -16,9 +16,8 @@ import { AbstractRedisClient } from './abstractRedisClient';
  * validity.
  */
 
-export class RedisAuthService extends AbstractRedisClient
-  implements IAuthService {
-  public jwtHashName = 'activeJwtClients';
+export class RedisAuthService extends AbstractRedisClient implements IAuthService {
+  public jwtHashName = "activeJwtClients";
 
   constructor(redisClient: RedisClient) {
     super(redisClient);
@@ -26,11 +25,7 @@ export class RedisAuthService extends AbstractRedisClient
 
   public async saveAuthenticatedUser(user: User): Promise<void> {
     if (user.isLoggedIn()) {
-      await this.addToken(
-        user.username.value,
-        user.refreshToken,
-        user.accessToken
-      );
+      await this.addToken(user.username.value, user.refreshToken, user.accessToken);
     }
   }
 
@@ -54,11 +49,11 @@ export class RedisAuthService extends AbstractRedisClient
       username: props.username,
       userId: props.userId,
       adminUser: props.adminUser,
-      isEmailVerified: props.isEmailVerified
+      isEmailVerified: props.isEmailVerified,
     };
 
     return jwt.sign(claims, authConfig.secret, {
-      expiresIn: authConfig.tokenExpiryTime
+      expiresIn: authConfig.tokenExpiryTime,
     });
   }
 
@@ -71,7 +66,7 @@ export class RedisAuthService extends AbstractRedisClient
    */
 
   public decodeJWT(token: string): Promise<JWTClaims> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       jwt.verify(token, authConfig.secret, (err, decoded) => {
         if (err) {
           return resolve(null);
@@ -92,11 +87,7 @@ export class RedisAuthService extends AbstractRedisClient
    * @return Promise<any>
    */
 
-  public addToken(
-    username: string,
-    refreshToken: RefreshToken,
-    token: JWTToken
-  ): Promise<any> {
+  public addToken(username: string, refreshToken: RefreshToken, token: JWTToken): Promise<any> {
     return this.set(this.constructKey(username, refreshToken), token);
   }
 
@@ -140,9 +131,7 @@ export class RedisAuthService extends AbstractRedisClient
    */
 
   public async getTokens(username: string): Promise<Array<string>> {
-    const keyValues = await this.getAllKeyValue(
-      `*${this.jwtHashName}.${username}`
-    );
+    const keyValues = await this.getAllKeyValue(`*${this.jwtHashName}.${username}`);
 
     return keyValues.map(kv => kv.value);
   }
@@ -155,10 +144,7 @@ export class RedisAuthService extends AbstractRedisClient
    * @return Promise<string>
    */
 
-  public async getToken(
-    username: string,
-    refreshToken: string
-  ): Promise<string> {
+  public async getToken(username: string, refreshToken: string): Promise<string> {
     return this.getOne(this.constructKey(username, refreshToken));
   }
 
@@ -170,10 +156,7 @@ export class RedisAuthService extends AbstractRedisClient
    * @return Promise<string>
    */
 
-  public async clearToken(
-    username: string,
-    refreshToken: string
-  ): Promise<any> {
+  public async clearToken(username: string, refreshToken: string): Promise<any> {
     return this.deleteOne(this.constructKey(username, refreshToken));
   }
 
@@ -185,9 +168,7 @@ export class RedisAuthService extends AbstractRedisClient
    */
 
   public async clearAllSessions(username: string): Promise<any> {
-    const keyValues = await this.getAllKeyValue(
-      `*${this.jwtHashName}.${username}`
-    );
+    const keyValues = await this.getAllKeyValue(`*${this.jwtHashName}.${username}`);
     const keys = keyValues.map(kv => kv.key);
 
     return Promise.all(keys.map(key => this.deleteOne(key)));
@@ -201,10 +182,7 @@ export class RedisAuthService extends AbstractRedisClient
    * @return Promise<boolean>
    */
 
-  public async sessionExists(
-    username: string,
-    refreshToken: string
-  ): Promise<boolean> {
+  public async sessionExists(username: string, refreshToken: string): Promise<boolean> {
     const token = await this.getToken(username, refreshToken);
     if (!!token) {
       return true;

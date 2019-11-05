@@ -1,10 +1,10 @@
-import { UniqueEntityID } from '../../../shared/domain/UniqueEntityID';
-import { Mapper } from '../../../shared/infra/Mapper';
-import { User } from '../domain/user';
-import { UserEmail } from '../domain/userEmail';
-import { UserName } from '../domain/userName';
-import { UserPassword } from '../domain/userPassword';
-import { UserDTO } from '../dtos/userDTO';
+import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
+import { Mapper } from "../../../shared/infra/Mapper";
+import { User } from "../domain/user";
+import { UserEmail } from "../domain/userEmail";
+import { UserName } from "../domain/userName";
+import { UserPassword } from "../domain/userPassword";
+import { UserDTO } from "../dtos/userDTO";
 
 export class UserMap implements Mapper<User> {
   public static toDTO(user: User): UserDTO {
@@ -12,7 +12,7 @@ export class UserMap implements Mapper<User> {
       username: user.username.value,
       isEmailVerified: user.isEmailVerified,
       isAdminUser: user.isAdminUser,
-      isDeleted: user.isDeleted
+      isDeleted: user.isDeleted,
     };
   }
 
@@ -21,7 +21,7 @@ export class UserMap implements Mapper<User> {
 
     const userPasswordOrError = UserPassword.create({
       value: raw.user_password,
-      hashed: true
+      hashed: true,
     });
     const userEmailOrError = UserEmail.create(raw.user_email);
     const userOrError = User.create(
@@ -31,12 +31,12 @@ export class UserMap implements Mapper<User> {
         isDeleted: raw.is_deleted,
         isEmailVerified: raw.is_email_verified,
         password: userPasswordOrError.getValue(),
-        email: userEmailOrError.getValue()
+        email: userEmailOrError.getValue(),
       },
-      new UniqueEntityID(raw.base_user_id)
+      new UniqueEntityID(raw.base_user_id),
     );
 
-    userOrError.isFailure ? console.log(userOrError.error) : '';
+    userOrError.isFailure ? console.log(userOrError.error) : "";
 
     return userOrError.isSuccess ? userOrError.getValue() : null;
   }
@@ -58,7 +58,7 @@ export class UserMap implements Mapper<User> {
       username: user.username.value,
       user_password: password,
       is_admin_user: user.isAdminUser,
-      is_deleted: user.isDeleted
+      is_deleted: user.isDeleted,
     };
   }
 }

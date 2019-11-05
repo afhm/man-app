@@ -1,5 +1,5 @@
-import { Result } from '../../../shared/core/Result';
-import { ValueObject } from '../../../shared/domain/ValueObject';
+import { Result } from "../../../shared/core/Result";
+import { ValueObject } from "../../../shared/domain/ValueObject";
 
 export interface UserEmailProps {
   value: string;
@@ -12,11 +12,9 @@ export class UserEmail extends ValueObject<UserEmailProps> {
 
   public static create(email: string): Result<UserEmail> {
     if (!UserEmail.isValidEmail(email)) {
-      return Result.fail<UserEmail>('Email address not valid');
+      return Result.fail<UserEmail>("Email address not valid");
     } else {
-      return Result.ok<UserEmail>(
-        new UserEmail({ value: UserEmail.format(email) })
-      );
+      return Result.ok<UserEmail>(new UserEmail({ value: UserEmail.format(email) }));
     }
   }
 

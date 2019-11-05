@@ -12,7 +12,7 @@ export abstract class ValueObject<T extends ValueObjectProps> {
 
   constructor(props: T) {
     const baseProps: any = {
-      ...props
+      ...props,
     };
 
     this.props = baseProps;
