@@ -18,12 +18,13 @@
     "migrate": "NODE_PATH=./src node migrate.js",
     "start:dev": "NODE_PATH=./src cross-env NODE_ENV=development nodemon",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --fix",
+    "lint:staged": "lint-staged",
     "test": "jest --forceExit",
     "test:dev": "jest --watchAll",
     "testWithCoverage": "jest --coverage"
   },
   "lint-staged": {
-    "*.js": "lint"
+    "*.ts": "lint"
   },
   "pre-commit": "lint:staged",
   "repository": {
