@@ -19,6 +19,8 @@
     "start:dev": "NODE_PATH=./src cross-env NODE_ENV=development nodemon",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --fix",
     "lint:staged": "lint-staged",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release",
     "test": "jest --forceExit",
     "test:dev": "jest --watchAll",
     "testWithCoverage": "jest --coverage"
