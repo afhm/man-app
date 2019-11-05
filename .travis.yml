@@ -8,6 +8,7 @@ install:
   - yarn
 script:
   - npm run build
+  - redis-server
   - npm run test
 after_script:
   - npm run coveralls
