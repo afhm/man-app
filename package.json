@@ -1,6 +1,6 @@
 {
   "name": "man-app",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
   "pre-commit": "lint:staged",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afhm/man-app.git"
+    "url": "https://github.com/afhm/man-app.git"
   },
   "release": {
     "publish": [
@@ -107,7 +107,7 @@
     "lint-staged": "^10.0.0-1",
     "npm-check": "^5.9.0",
     "pre-commit": "^1.2.2",
-    "semantic-release": "^15.13.28",
+    "semantic-release": "^15.13.30",
     "supertest": "^4.0.2",
     "travis-deploy-once": "^5.0.11"
   },
@@ -119,5 +119,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
