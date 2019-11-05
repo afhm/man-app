@@ -22,3 +22,5 @@ npm install
 npm run migrate:dev
 npm run start:dev
 ```
+
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
