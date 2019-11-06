@@ -11,7 +11,9 @@ import { LoginDTO, LoginDTOResponse } from "./LoginDTO";
 import { LoginUseCaseErrors } from "./LoginErrors";
 
 type Response = Either<
-  LoginUseCaseErrors.PasswordDoesntMatchError | LoginUseCaseErrors.UserNameDoesntExistError | AppError.UnexpectedError,
+  | LoginUseCaseErrors.PasswordDoesntMatchError
+  | LoginUseCaseErrors.UserNameDoesntExistError
+  | AppError.UnexpectedError,
   Result<LoginDTOResponse>
 >;
 

@@ -67,7 +67,9 @@ export class Guard {
     } else {
       return {
         succeeded: false,
-        message: `${argumentName} isn't oneOf the correct types in ${JSON.stringify(validValues)}. Got "${value}".`,
+        message: `${argumentName} isn't oneOf the correct types in ${JSON.stringify(
+          validValues,
+        )}. Got "${value}".`,
       };
     }
   }
