@@ -10,7 +10,9 @@ const userRouter = express.Router();
 
 userRouter.post("/", (req, res) => createUserController.execute(req, res));
 
-userRouter.get("/me", middleware.authenticateRequests(), (req, res) => getCurrentUserController.execute(req, res));
+userRouter.get("/me", middleware.authenticateRequests(), (req, res) =>
+  getCurrentUserController.execute(req, res),
+);
 
 userRouter.post("/login", (req, res) => loginController.execute(req, res));
 
