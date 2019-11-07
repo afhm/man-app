@@ -26,4 +26,16 @@ npm run migrate:dev
 npm run start:dev
 ```
 
+### Built with
+
+#### Backend
+
+- [Tabel](https://github.com/fractaltech/tabel) - ORM for Node.js
+- [Express.js](https://expressjs.com/) - Lightweight webserver
+- [Redis](https://redis.io/) - For holding onto JWT tokens and refresh tokens
+
+#### Frontend
+
+- Angular (WIP)
+
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
